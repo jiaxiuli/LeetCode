@@ -1,0 +1,27 @@
+class Solution {
+    public List<String> commonChars(String[] A) {
+   //     String A[] = new String[] {"cool","lock","cook"};
+	int i = 1;
+	String s = A[0];
+	String s0 = "";
+	while( i < A.length ) {
+		s0 = "";
+		for( int p = 0 ; p < s.length() ; p++ ) {
+			for( int q = 0 ; q < A[i].length() ; q++ ) {
+				if( s.charAt(p) == A[i].charAt(q) ) {
+					s0 = s0 + s.charAt(p);
+					A[i] = A[i].substring(0, q) + A[i].substring(q+1);
+                    break;
+				}
+				
+			}
+		}
+		s = s0;
+		i++;
+	}
+	List<String> list = new ArrayList<String>();
+	for( int k = 0; k < s0.length() ; k++ )
+		list.add(s0.charAt(k)+"");
+	return list;
+    }
+}
