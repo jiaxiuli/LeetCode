@@ -1,0 +1,37 @@
+class Solution {
+    public int[] shortestToChar(String S, char C) {
+	// String S = "loveleetcode"; 
+	// char C = 'e';
+	int arr[] = new int[S.length()];
+	
+	for( int i = 0 ; i < S.length() ; i++ ) {
+		int l = i, r = i;
+		int cot_l = 0, cot_r = 0;
+		boolean bl = false, br = false;
+		while( l >= 0 ) {
+			if( S.charAt(l) == C ) {
+				bl = true;
+				break;
+			}
+			cot_l++;
+			l--;	
+		}
+		while( r < S.length() ) {
+			if( S.charAt(r) == C ) {
+				br = true;
+				break;
+			}
+			cot_r++;
+			r++;	
+		}
+		if( br && bl ) {
+			arr[i] = Math.min(cot_l, cot_r);
+		}else if(br)
+			arr[i] = cot_r;
+		else
+			arr[i] = cot_l;
+	}
+	
+	return arr;
+    }
+}
