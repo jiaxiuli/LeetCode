@@ -1,0 +1,34 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        String s = "";
+		int num0 = x;
+		int sum = 0;
+		ArrayList<Integer> subnum = new ArrayList<Integer>();
+		
+		if(x == 0) {
+			return true;
+		}
+		
+		while(x > 0) {
+			subnum.add(x%10);
+			x = x/10;
+			
+			
+		}
+
+	  for(int i = 0; i<subnum.size();i++) {
+		  s = s + subnum.get(i);
+	  }
+	  
+	
+	  String str = String.valueOf(num0);
+
+	
+	  
+	  if(str.equals(s)) {
+		 return true;
+	  }else {
+		 return false;
+	  }
+    }
+}
