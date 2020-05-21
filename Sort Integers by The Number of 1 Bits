@@ -1,0 +1,47 @@
+class Solution {
+    public int[] sortByBits(int[] arr) {
+       // 	int arr[] = new int[] {0,1,2,3,4,5,6,7,8};
+		Arrays.sort(arr);
+		int num[] = new int[arr.length];
+		
+		
+		int m = 0;
+		
+		while( m < num.length ) {
+			int minbit = 9999999;
+		for( int i = 0 ; i < arr.length ; i++ ) {
+			if(arr[i] == -1 )
+				continue;
+			String s = Integer.toBinaryString(arr[i]);
+			int count = 0;
+			for( int j = 0; j < s.length() ; j++ ) {
+				if( s.charAt(j) == '1')
+					count++;
+				
+			}
+			if( count < minbit )
+				minbit = count;
+		}
+		
+		for( int i = 0 ; i < arr.length ; i++ ) {
+			if(arr[i] == -1 )
+				continue;
+			String s = Integer.toBinaryString(arr[i]);
+			int count = 0;
+			for( int j = 0; j < s.length() ; j++ ) {
+				if( s.charAt(j) == '1')
+					count++;
+				
+			}
+			if( count == minbit ) {
+				num[m] = arr[i];
+				arr[i] = -1;
+				m++;
+			}
+				
+		}
+		}
+		
+		return num;
+    }
+}
