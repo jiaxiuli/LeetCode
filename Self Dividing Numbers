@@ -1,0 +1,33 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+    //    int left = 1 ; 
+	//	int right = 22;
+		//int nums[] = new int[right-left+1];
+        List<Integer> list = new ArrayList<Integer>();
+        int k = 0;
+		for( int i = left ; i <= right ; i++) {
+			int temp = i;
+			if( i % 10 == 0 ) {
+				continue;
+			}
+			while( temp / 10 != 0 || temp % 10 != 0 ) {
+				if( temp % 10 == 0 )
+                    break;
+                
+                if( i % (temp % 10) != 0 ) {
+					break;
+				}
+				if( temp/10 == 0 ) {
+				//	System.out.println(i);
+					list.add(i);
+					k++;
+				}
+				
+				temp = temp / 10;
+				
+			//	System.out.println(i);
+			}
+		}
+        return list;
+    }
+}
