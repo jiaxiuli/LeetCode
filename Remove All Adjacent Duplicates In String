@@ -1,0 +1,17 @@
+class Solution {
+    public String removeDuplicates(String S) {
+    //    String S = "abbacaa";
+		boolean k = false;
+		 do{
+			 k = false;
+		for( int i = 0 ; i < S.length()-1 ; i++ ) {
+			if( S.charAt(i) == S.charAt(i+1) ) {
+				S = S.substring(0, i) + S.substring(i+2);
+				k = true;
+				}
+		}
+		
+		}while(k);
+		return S;
+    }
+}
