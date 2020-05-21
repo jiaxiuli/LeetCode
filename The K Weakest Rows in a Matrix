@@ -1,0 +1,42 @@
+class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+      //   int k = 3;
+		  int arr[] = new int[k];
+		  int p = 0;
+		  int min;
+		  int min_row = -1;
+//		 
+		 while( p < k) {
+			 min=mat[0].length+1;
+			 min_row = -1;
+			
+			 for( int i = 0; i < mat.length ; i++ ) {
+				 int count = 0;
+				 boolean b = true;
+			    for( int j = 0 ; j < mat[i].length ; j++ ) {
+				  if( mat[i][j] == 1)
+					  count++;
+				  else if(mat[i][j] == -1) {
+					 b = false;
+					  break;
+					  }
+			  }
+			  if(!b)
+				  continue;
+			  if( count < min ) {
+				  min = count;
+				  min_row = i;
+			  }
+			 
+		  }
+		
+		arr[p] = min_row;
+		p++; 
+		 for( int j = 0 ; j < mat[min_row].length ; j++ ) 
+			 mat[min_row][j] = -1;
+		 //  System.out.println(min+"  "+min_row);
+		 
+		 }
+		return arr;
+    }
+}
