@@ -1,0 +1,30 @@
+class Solution {
+    public List<Integer> luckyNumbers (int[][] matrix) {
+   //     int matrix[][] = new int[][] {{3,7,8},{9,11,13},{15,16,17}};
+		List<Integer> list = new ArrayList<Integer>();
+		
+		for( int i = 0 ; i < matrix.length ; i++ ) {
+			int min = 9999999;
+			int min_row = 0;
+			//find minimum in the row
+			for( int m = 0 ; m < matrix[i].length ; m++ ) {
+				if( matrix[i][m] < min ) {
+					min = matrix[i][m];
+					min_row = m;
+					}
+			}
+			//check whether is the maximum in its column
+			boolean b = true;
+			for( int n = 0 ; n < matrix.length ; n++ ) {
+				if( matrix[n][min_row] > min ) {
+					b = false;
+				}
+			}
+			
+			if(b)
+				list.add(min);
+			
+		}
+		return list;
+    }
+}
