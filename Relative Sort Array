@@ -1,0 +1,37 @@
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+//  int arr1[] = new int[] {2,3,1,3,2,4,6,7,9,2,19};
+//	int arr2[] = new int[] {2,1,4,3,9,6};
+	int nums[] = new int[arr1.length];
+	
+	int k = 0;
+	for( int i = 0 ; i < arr2.length ; i++ ) {
+		for( int j = 0 ; j<arr1.length ; j++ ) {
+			if( arr1[j] == arr2[i] ) {
+				nums[k] = arr1[j];
+				k++;
+				arr1[j] = -99999;
+			}
+			
+		}
+		
+	}
+	int m = 0;
+	int temp[] = new int[arr1.length-k];
+	for( int i = 0 ; i < arr1.length ; i++ ) {
+		if(arr1[i] != -99999) {
+			temp[m] = arr1[i];
+			m++;
+		}
+	}
+	Arrays.sort(temp);
+	
+	for( int i = 0; i < temp.length ; i++ ) {
+		nums[k] = temp[i];
+		k++;
+	}
+	
+	
+	return nums;
+    }
+}
