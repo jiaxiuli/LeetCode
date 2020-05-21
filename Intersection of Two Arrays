@@ -1,0 +1,36 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for( int i = 0 ; i < nums1.length ; i++ ){
+            for( int j = 0 ; j < nums2.length ; j++ ){
+                if( nums1[i] == nums2[j] )
+                    list.add(nums1[i]);
+            }
+        }
+        for(int i =0;i<list.size()-1;i++){
+            for(int j=list.size()-1;j>i;j--){
+                if(list.get(i).equals(list.get(j)))
+                    list.remove(j);
+            }
+        }
+        
+        int nums[] = new int[list.size()];
+        
+        for( int i = 0 ; i < nums.length ; i++ ){
+            nums[i] = list.get(i);
+        }
+       // int m = 0;
+        // for( int i = 0 ; i < list.size() ; i++ ){
+        //     for( int j = 0 ; j < nums.length ; j++ ){
+        //         if( nums[j] == list.get(i) )
+        //            break;
+        //         else{
+        //             nums[m] = list.get(i);
+        //             m++; 
+        //             break;
+        //         }
+        //     }
+        // }
+        return nums;
+    }
+}
