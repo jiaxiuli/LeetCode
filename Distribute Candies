@@ -1,0 +1,14 @@
+class Solution {
+    public int distributeCandies(int[] candies) {
+      int kind = -1;
+        int count = 0;
+        Arrays.sort(candies);
+        for( int i = 0 ; i < candies.length ; i++ ){
+           if( kind != candies[i] ){
+               count++;
+               kind = candies[i];
+           }
+        }
+        return Math.min(candies.length/2, count);
+    }
+}
