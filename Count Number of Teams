@@ -1,0 +1,35 @@
+class Solution {
+    public int numTeams(int[] rating) {
+        int count_min = 0;
+        int count_max = 0;
+        for( int i = 0; i < rating.length - 2; i++ ){
+            for( int j = i + 1 ; j < rating.length -1 ; j++ ){
+                if( rating[i] < rating[j] ){
+                    for( int k = j + 1; k < rating.length ; k++ ){
+                        if( rating[k] > rating[j] ){
+                            count_min++;
+                        }
+                    }
+                }else{
+                    continue;
+                }
+            }
+        }
+        
+         for( int i = 0; i < rating.length - 2; i++ ){
+            for( int j = i + 1 ; j < rating.length -1 ; j++ ){
+                if( rating[i] > rating[j] ){
+                    for( int k = j + 1; k < rating.length ; k++ ){
+                        if( rating[k] < rating[j] ){
+                            count_max++;
+                        }
+                    }
+                }else{
+                    continue;
+                }
+            }
+        }
+        
+        return count_min + count_max;
+    }
+}
