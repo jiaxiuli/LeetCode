@@ -1,0 +1,23 @@
+class Solution {
+    public String reverseWords(String s) {
+     //   String s = "Let's take LeetCode contest";
+	s = s + " ";
+	int l = 0, r = 0;
+	String s0 = "";
+	for( int i = 0; i < s.length() ; i++ ) {
+		if( s.charAt(i) == ' ') {
+			r = i;
+			String temp = s.substring(l, r);
+			l = i+1;
+			
+			String temp0 = "";
+			for( int j = temp.length()-1 ; j >= 0 ; j-- ) {
+				temp0 = temp0 + temp.charAt(j);
+			}
+			s0 = s0 + " " + temp0;
+		}
+	}
+	s0 = s0.substring(1);
+        return s0;
+    }
+}
