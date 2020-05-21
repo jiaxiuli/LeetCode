@@ -1,0 +1,24 @@
+class Solution {
+    public List<Integer> partitionLabels(String S) {
+    int p = -1;
+		int p0 = 0;
+		List<Integer> list = new ArrayList<Integer>();
+		for( int i = 0 ; i < S.length() ; i++ ) {
+			for( int j = i  ; j < S.length() ; j++ ) {
+				if( S.charAt(j) == S.charAt(i) && j > p ) {
+					p = j;
+				}
+				
+			}
+			if( i == p  ) {
+				list.add(p-p0+1);
+				p0 = p+1;
+				p=0;
+			
+			}
+			
+		}
+		
+		return list;
+    }
+}
