@@ -1,0 +1,30 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        
+	//	int nums[] = new int[] {0,1,2,2,3,0,4,2};
+		int length = 0;
+		int target = val;
+	int i = 0;
+		 
+	while( i < nums.length){
+		if( nums[i] == target) {
+			for( int j = i ;j < nums.length-1 ; j++) {
+				
+				nums[j] = nums[j+1];
+				
+			}
+        nums[nums.length-1] = -99999;
+		}else {
+			i++;
+			
+		}
+	}
+	
+	
+	while( length < nums.length && nums[length] != -99999) {
+		length++;
+	}
+	return length;
+	
+    }
+}
