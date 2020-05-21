@@ -1,0 +1,43 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        String s = digits;
+        char arr[][]= {{},{},{'a','b','c'},{'d','e','f'},{'g','h','i'},{'j','k','l'},{'m','n','o'},{'p','q','r','s'}
+		,{'t','u','v'},{'w','x','y','z'}};
+        
+        List<String> temp1 = new ArrayList<String>();
+        if( s.length() == 0 )
+            return temp1;
+        if( s.length() == 1 ){
+            int x = s.charAt(0) - 48;
+            for( int i = 0 ; i < arr[x].length ; i++ ){
+                temp1.add(""+arr[x][i]);
+            }
+            return temp1;
+        }
+            
+		
+		int x = s.charAt(0) - 48;
+		int y = s.charAt(1) - 48;
+		
+		for( int i = 0 ; i < arr[x].length ; i++ ) {
+			for( int j = 0 ; j < arr[y].length ; j++ ) {
+				String s0 = "" + arr[x][i] + arr[y][j];
+				temp1.add(s0);
+			}
+		}
+		
+		for( int k = 0 ; k < s.length() - 2 ; k++ ) {
+			List<String> temp2 = new ArrayList<String>();
+			
+			for( int i = 0 ; i < temp1.size() ; i++ ) {
+				for( int j = 0 ; j < arr[s.charAt(k+2) - 48].length ; j++ ) {
+					String s0 = "" + temp1.get(i) + arr[s.charAt(k+2) - 48][j];
+					temp2.add(s0);
+				}
+			}
+			temp1 = temp2;
+		}
+		
+		return temp1;
+    }
+}
