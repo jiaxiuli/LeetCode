@@ -1,0 +1,39 @@
+class Solution {
+    public String[] uncommonFromSentences(String A, String B) {
+    //    String A = "apple apple", B = "banana";
+		String s = "";
+		A = A + " ";
+		B = B + " ";
+		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list0 = new ArrayList<String>();
+		for( int i = 0; i < A.length() ; i++ ) {
+			if( A.charAt(i) == ' ') {
+				list.add(s);
+				s = "";
+			}else
+				s = s + A.charAt(i);
+		}
+		for( int i = 0; i < B.length() ; i++ ) {
+			if( B.charAt(i) == ' ') {
+				list.add(s);
+				s = "";
+			}else
+				s = s + B.charAt(i);
+		}
+		
+		for( int i = 0 ; i < list.size() ; i++ ) {
+			int count = 0;
+			for( int j = 0 ; j < list.size() ; j++ ) {
+				if( list.get(i).equals(list.get(j)))
+					count++;
+			}
+			if( count == 1) {
+				list0.add(list.get(i));
+			}
+		}
+		String s1[] = new String[list0.size()];
+        for( int i = 0 ; i < s1.length ; i++ )
+            s1[i] = list0.get(i);
+        return s1;
+    }
+}
