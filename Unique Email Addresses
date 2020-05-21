@@ -1,0 +1,29 @@
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+ //       String emails[] = new String[] {"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"}; 
+	ArrayList<String> list = new ArrayList<String>();
+	for( int i = 0 ; i < emails.length ; i++ ) {
+		int index = 0;
+		for( int j = 0 ; j < emails[i].length() ; j++ ) {
+			if( emails[i].charAt(j) == '@') {
+				index = j ;
+				break;
+				}
+		}
+		String s = emails[i].substring(0, index);
+		String s0 = emails[i].substring(index);;
+		String local = "";
+		for( int k = 0 ; k < s.length() ; k++ ) {
+			if( s.charAt(k) == '.')
+				continue;
+			if( s.charAt(k) == '+')
+				break;
+			local = local + s.charAt(k);
+		}
+		local = local + s0;
+		if( !list.contains(local) )
+			list.add(local);
+	}
+	return list.size();
+    }
+}
