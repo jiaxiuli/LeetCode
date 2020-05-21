@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+		Arrays.sort(arr);
+        //find the minimum
+		int min = 99999999;
+		for( int i = 1; i < arr.length ; i++ ) {
+			
+			if( Math.abs(arr[i] - arr[i-1]) < min || Math.abs(arr[i-1] - arr[i]) < min )
+					min = Math.min(Math.abs(arr[i] - arr[i-1]), Math.abs(arr[i-1] - arr[i]));
+			
+		}
+		
+		for( int i = 1; i < arr.length  ; i++ ) {
+			
+				if( Math.abs(arr[i] - arr[i-1]) == min || Math.abs(arr[i-1] - arr[i]) == min ) {
+					List<Integer> temp = new ArrayList<Integer>();
+					temp.add(Math.min(arr[i], arr[i-1]));
+					temp.add(Math.max(arr[i], arr[i-1]));
+					list.add(temp);
+					
+				
+			}
+		}
+		return list;
+    }
+}
