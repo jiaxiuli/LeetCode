@@ -1,0 +1,22 @@
+class Solution {
+    public int maximum69Number (int num) {
+        int n = num;
+		String s = "";
+		String s1 = "6";
+		String s2 = "9";
+		int result = 0;
+		while( n % 10 != 0 || n / 10 != 0) {
+			s = (n % 10) + s;
+			n = n / 10;
+			
+		}
+		
+			s = s.replaceFirst(s1,s2);
+			int k = 1;
+	for( int i = s.length() - 1 ; i >= 0 ; i--) {
+		result = result +Integer.parseInt(String.valueOf(s.charAt(i))) * k;
+		k = k * 10;
+	}
+		return result;
+    }
+}
