@@ -1,0 +1,19 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        //	int A[] = new int[] {4,2,5,7,6,3,9,4};
+		int num[] = new int[A.length];
+		
+		int p = 0, q = 1;
+		for( int i = 0; i < num.length ; i++ ) {
+			if( A[i] % 2 == 0) {
+				num[p] = A[i];
+				p = p + 2;
+			}else {
+				num[q] = A[i];
+				q = q + 2;
+			}
+		}
+		
+		return num;
+    }
+}
