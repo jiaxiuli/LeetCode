@@ -1,0 +1,92 @@
+class Solution {
+    public int romanToInt(String s) {
+        
+		
+		int sum = 0;
+	
+		ArrayList<String> str = new ArrayList<String>();
+		for(int i = 0; i < s.length();i++) {
+			
+            if(i == s.length() - 1){
+                str.add(""+s.charAt(i));
+            }else{
+            
+            String s0 = "";
+			if(s.charAt(i) == 'I'&&s.charAt(i+1) == 'V') {
+				s0 = "IV";
+				i++;
+				str.add(s0);
+			}else if(s.charAt(i) == 'I'&&s.charAt(i+1) == 'X') {
+				s0 = "IX";
+				i++;
+				str.add(s0);
+			}else if(s.charAt(i) == 'X'&&s.charAt(i+1) == 'L') {
+				s0 = "XL";
+				i++;
+				str.add(s0);
+			}else if(s.charAt(i) == 'X'&&s.charAt(i+1) == 'C') {
+				s0 = "XC";
+				i++;
+				str.add(s0);
+			}else if(s.charAt(i) == 'C'&&s.charAt(i+1) == 'D') {
+				s0 = "CD";
+				i++;
+				str.add(s0);
+			}else if(s.charAt(i) == 'C'&&s.charAt(i+1) == 'M') {
+				s0 = "CM";
+				i++;
+				str.add(s0);
+			}else {
+				str.add(""+s.charAt(i));
+			}
+            }
+		}
+		
+
+		for(int i = 0 ; i < str.size() ; i++) {
+			switch(str.get(i)) {
+			case "M" :
+				sum = sum + 1000;
+				break;
+			case "D" :
+				sum = sum + 500;
+				break;
+			case "C":
+				sum = sum + 100;
+				break;
+			case "L":
+				sum = sum + 50;
+				break;
+			case "X":
+				sum = sum + 10;
+				break;
+			case "V":
+				sum = sum + 5;
+				break;
+			case "I":
+				sum = sum + 1;
+				break;
+			case "IV":
+				sum = sum + 4;
+				break;
+			case "IX":
+				sum = sum + 9;
+				break;
+			case "XL":
+				sum = sum + 40;
+				break;
+			case "XC":
+				sum = sum + 90;
+				break;
+			case "CD":
+				sum = sum+ 400;
+				break;
+			case "CM":
+				sum = sum + 900;
+				break;
+			default: break;
+			}
+		}
+		return sum;
+    }
+}
