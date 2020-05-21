@@ -1,0 +1,36 @@
+class Solution {
+    public int reverse(int x) {
+      
+		
+		String s = String.valueOf(x);
+	  if(x == 0){ 
+          return x;
+        }
+		String s0 = "";
+		
+		
+		
+		for(int i = s.length()-1; i >= 0; i--) {
+			s0 = s0 + s.charAt(i);
+		}
+		
+	//	System.out.println(s0.charAt(0));
+		
+		while(s0.charAt(0)=='0') {
+			s0 = s0.substring(1);	
+		}
+		if(s0.charAt(s0.length()-1) == '-') {
+			s0 = s0.substring(0, s0.length()-1);
+			s0 = '-' + s0;
+		}
+		
+       long result =  Long.valueOf(s0).longValue(); 
+       if(result > 2147483647||result < -2147483648) {
+		return 0;
+	}else {
+		return (int)result;
+	}
+	
+       
+    }
+}
