@@ -1,0 +1,37 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+    //   int nums[] = new int[]{1,2,4,5,6,7,8,9,45,48,50,60,70,80,90};
+	//	int target = 445;
+		int pos = -1;
+		int i = 0;
+	while( i < nums.length) {
+		if(nums[i] == target) {
+			pos = i;
+			break;
+		}else {
+			i++;
+		}
+	}
+	
+	if(pos == -1) {
+		int j = 0;
+		if(target < nums[0]) {
+			return 0;
+		}else if(target > nums[nums.length-1]) {
+			return nums.length;
+		}
+		while( j < nums.length-1) {
+			if(nums[j] < target && nums[j+1] > target) {
+				pos = j+1;
+				break;
+			}else {
+				j++;
+			}
+		}
+		
+	}
+		
+	
+		return pos; 
+    }
+}
