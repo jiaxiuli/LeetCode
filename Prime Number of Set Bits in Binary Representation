@@ -1,0 +1,25 @@
+class Solution {
+    public int countPrimeSetBits(int L, int R) {
+        //	int L = 10 , R = 15;
+		int num = 0;
+		for( int i = L ; i <= R ; i++ ) {
+			String s = Integer.toBinaryString(i);
+			int count = 0; 
+			for( int j = 0 ; j < s.length() ; j++ ) {
+				if( s.charAt(j) == '1')
+					count++;
+			}
+			boolean b = true;
+            if( count == 1) b = false;
+			for( int k = 2 ; k < count ; k++ ) {
+				if( count % k == 0) {
+					b = false;
+				    break;
+				    }
+			}
+			if(b)
+				num++;
+		}
+		return num;
+    }
+}
