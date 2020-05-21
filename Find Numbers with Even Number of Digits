@@ -1,0 +1,21 @@
+class Solution {
+    public int findNumbers(int[] nums) {
+      //  	int nums[] = new int[]{12,345,2,6,7896};
+		int result = 0;
+		
+		for( int i = 0 ; i < nums.length ; i++ ) {
+		int temp = 0;
+			while( nums[i] % 10 != 0 || nums[i]/10 != 0) {
+				temp++;
+				nums[i] = nums[i]/10;
+			}
+		//	System.out.println(temp);
+			if( temp % 2 == 0) {
+				result++;
+			}
+			
+		}
+	//	System.out.println(result);
+        return result;
+    }
+}
