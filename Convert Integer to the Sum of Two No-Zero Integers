@@ -1,0 +1,42 @@
+class Solution {
+    public int[] getNoZeroIntegers(int n) {
+        int left = 1, right = n -1;
+        int arr[] = new int[2];
+        
+        while(true){
+            boolean b = false;
+            String sleft = left + "";
+            String sright = right + "";
+            
+            for( int i = 0 ; i < sleft.length() ; i++ ){
+                if( sleft.charAt(i) == '0' ){
+                    left++;
+                    right--;
+                    b = true;
+                    break;
+                }
+            }
+            if(b)
+                continue;
+             
+            for( int i = 0 ; i < sright.length() ; i++ ){
+                if( sright.charAt(i) == '0' ){
+                    left++;
+                    right--;
+                    b = true;
+                    break;
+                }
+            }
+             if(b)
+                continue;
+            else{
+                arr[0] = left;
+                arr[1] = right;
+                break;
+            }
+                
+            
+        }
+        return arr;
+    }
+}
