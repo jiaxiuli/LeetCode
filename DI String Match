@@ -1,0 +1,18 @@
+class Solution {
+    public int[] diStringMatch(String S) {
+        int left = 0;
+        int right = S.length();
+        int arr[] = new int[right+1];
+        for( int i = 0 ; i < S.length() ; i++ ){
+            if( S.charAt(i) == 'I'){
+                arr[i] = left;
+                left++;
+            }else{
+                arr[i] = right;
+                right--;
+            }
+        }
+        arr[S.length()] = left;
+        return arr;
+    }
+}
