@@ -1,0 +1,51 @@
+class Solution {
+    public boolean canReorderDoubled(int[] A) {
+        List pos = new ArrayList();
+        List neg = new ArrayList();
+        
+        for( int i = 0 ; i < A.length ; i++ ){
+            if( A[i] > 0 )
+                pos.add(A[i]);
+            else
+                neg.add(A[i]);
+        }
+        Collections.sort(pos);
+        Collections.sort(neg);
+        
+        
+        
+        while( pos.size() > 0){
+             boolean b = false;
+             for( int i = 1 ; i < pos.size() ; i++ ){
+                  if( (int)pos.get(0)*2  == (int)pos.get(i) ){
+                      pos.remove(i);
+                      pos.remove(0);
+                  
+                       b = true;
+                       break;
+                  }
+             }
+             if( b == false )
+                return false;
+        }
+        while( neg.size() > 0){
+             boolean b = false;
+             for( int i = 1 ; i < neg.size() ; i++ ){
+                  if( (int)neg.get(0)  == (int)neg.get(i)*2 ){
+                      neg.remove(i);
+                      neg.remove(0);
+                      
+                       b = true;
+                       break;
+                  }
+             }
+             if( b == false )
+                return false;
+        }
+        
+        
+        
+
+        return true;
+    }
+}
