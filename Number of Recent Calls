@@ -1,0 +1,34 @@
+/*
+Write a class RecentCounter to count recent requests.
+
+It has only one method: ping(int t), where t represents some time in milliseconds.
+
+Return the number of pings that have been made from 3000 milliseconds ago until now.
+
+Any ping with time in [t - 3000, t] will count, including the current ping.
+
+It is guaranteed that every call to ping uses a strictly larger value of t than before.
+*/
+
+class RecentCounter {
+     List<Integer> list = new ArrayList<Integer>();
+    public RecentCounter() {
+        
+    }
+    
+    public int ping(int t) {
+        list.add(t);
+        int count = 0;
+        for( int i = 0 ; i < list.size() ; i++ ){
+            if( list.get(i) >= t - 3000 && list.get(i) <= t )
+                count++;
+        }
+        return count;
+    }
+}
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * RecentCounter obj = new RecentCounter();
+ * int param_1 = obj.ping(t);
+ */
