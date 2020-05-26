@@ -1,0 +1,43 @@
+/*
+Given a binary tree, return the sum of values of nodes with even-valued grandparent.  
+(A grandparent of a node is the parent of its parent, if it exists.)
+
+If there are no nodes with an even-valued grandparent, return 0.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int sum = 0;
+   
+    public int sumEvenGrandparent(TreeNode root) {
+        findDepth(root, null, null);
+        
+        
+        return sum;
+    }
+    public TreeNode findDepth(TreeNode root, TreeNode parent, TreeNode gparent){
+        if( root == null ) return null;
+        if( gparent != null && gparent.val % 2 == 0)
+            sum += root.val;
+           
+        root.left = findDepth(root.left, root, parent);
+        root.right = findDepth(root.right, root, parent);
+        return root;
+    }
+    
+
+}
