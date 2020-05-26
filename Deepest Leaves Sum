@@ -1,0 +1,43 @@
+/*
+Given a binary tree, return the sum of values of its deepest leaves.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int depth = 0, sum = 0;
+    public int deepestLeavesSum(TreeNode root) {
+        finddeepest( root, 1 );
+        search(root, 1);
+        return sum;
+    }
+    public TreeNode finddeepest(TreeNode root, int count){
+        if( root == null )return null;
+        if( count > depth )
+            depth = count;
+        root.left = finddeepest(root.left, count + 1 );
+        root.right = finddeepest( root.right, count + 1 );
+        return root;
+    }
+     public TreeNode search(TreeNode root, int count){
+        if( root == null )return null;
+        if( count == depth )
+            sum = sum + root.val;
+        root.left = search(root.left, count + 1 );
+        root.right = search( root.right, count + 1 );
+        return root;
+    }
+}
