@@ -1,0 +1,35 @@
+/*
+Given two arrays of integers nums and index. Your task is to create target array under the following rules:
+
+Initially target array is empty.
+From left to right read nums[i] and index[i], insert at index index[i] the value nums[i] in target array.
+Repeat the previous step until there are no elements to read in nums and index.
+Return the target array.
+
+It is guaranteed that the insertion operations will be valid.
+*/
+
+
+class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+        int arr[] = new int[nums.length];
+        
+        for( int i = 0 ; i < nums.length ; i++ ){
+            arr[i] = -1;
+        }
+         
+        
+        for( int i = 0 ; i < nums.length ; i++ ){
+            if( arr[index[i]] == -1 )
+                arr[index[i]] = nums[i];
+            else{
+                //move back one by one
+                for( int k = arr.length - 1 ; k > index[i] ; k-- ){
+                    arr[k] = arr[k - 1];
+                }
+                arr[index[i]] = nums[i];
+            }
+        }
+        return arr;
+    }
+}
