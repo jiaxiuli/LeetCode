@@ -1,0 +1,44 @@
+/*
+Given a n-ary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).
+*/
+
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+    int max = 0;
+    public int maxDepth(Node root) {
+        if( root != null)
+        search(root, 1);
+        return max;
+    }
+    public Node search(Node root, int count){
+        if( count > max )
+            max = count;
+        if( root.children == null ) return null;
+        for( Node i : root.children )
+            i = search(i, count + 1 );
+        return root;
+    }
+}
