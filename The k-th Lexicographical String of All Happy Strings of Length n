@@ -1,0 +1,80 @@
+/*
+A happy string is a string that:
+
+consists only of letters of the set ['a', 'b', 'c'].
+s[i] != s[i + 1] for all values of i from 1 to s.length - 1 (string is 1-indexed).
+For example, strings "abc", "ac", "b" and "abcbabcbcb" are all happy strings and strings "aa", "baa" and "ababbc" are not happy strings.
+
+Given two integers n and k, consider a list of all happy strings of length n sorted in lexicographical order.
+
+Return the kth string of this list or return an empty string if there are less than k happy strings of length n.
+*/
+
+class TreeNode {
+	
+		      char val;
+		      TreeNode left;
+		      TreeNode right;
+		      TreeNode() {}
+		      TreeNode(char val) { this.val = val;}
+		      TreeNode(char val, TreeNode left, TreeNode right) {
+		          this.val = val;
+		          this.left = left;
+		          this.right = right;
+		      }  
+}
+
+class Solution {
+    
+    List<String> list = new ArrayList<String>();
+    
+    public String getHappyString(int n, int k) {
+     if( k > (int)Math.pow(2,n-1)*3 )
+         return "";
+     TreeNode root1 = new TreeNode('a');
+     TreeNode root2 = new TreeNode('b');
+     TreeNode root3 = new TreeNode('c');
+		dfs( root1, 1, n );
+        dfs( root2, 1, n );
+        dfs( root3, 1, n );
+        printTree(root1, "");
+        printTree(root2, "");
+        printTree(root3, "");
+        
+        return list.get(k*2-1);
+        
+		
+        
+    }
+    public TreeNode dfs(TreeNode root, int count, int n){
+		 if( root == null ) root = new TreeNode();
+		 if( count == n )
+			 return null;
+		 if( root.val == 'a' ) {
+			 root.left = new TreeNode('b');
+			 root.right = new TreeNode('c');
+		 }
+		 if( root.val == 'b' ) {
+			 root.left = new TreeNode('a');
+			 root.right = new TreeNode('c');
+		 }
+		 if( root.val == 'c' ) {
+			 root.left = new TreeNode('a');
+			 root.right = new TreeNode('b');
+		 }
+		 
+		 dfs(root.left, count+1, n );
+		 dfs(root.right, count+1, n );
+	     return root;
+	    }
+    public TreeNode printTree(TreeNode root, String s) {
+		 
+		 if( root == null ) {
+			 list.add(s);
+			 return null; 
+		 } 
+		 root.left = printTree(root.left, s + root.val);
+		 root.right = printTree(root.right, s + root.val);
+		 return root;
+	 }
+}
