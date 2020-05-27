@@ -1,0 +1,66 @@
+/*
+Given the root of a binary search tree with distinct values, 
+modify it so that every node has a new value equal to the sum 
+of the values of the original tree that are greater than or equal to node.val.
+
+As a reminder, a binary search tree is a tree that satisfies these constraints:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+
+*/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int sum = 0;
+    int arr[] = new int[100];
+    int i = 0, k = 0;
+    
+    public TreeNode bstToGst(TreeNode root) {
+       mid(root, root);
+        return add(root);
+    }
+    public TreeNode mid(TreeNode root, TreeNode ROOT){
+         if( root == null )return null;
+        this.sum = 0;
+        dfs(ROOT, root.val);
+        arr[i] = sum;
+        i++;
+        root.left = mid(root.left, ROOT);
+        root.right = mid(root.right, ROOT);
+        return root;
+    }
+    
+    public TreeNode dfs(TreeNode root, int val){
+        if( root == null ) return null;
+        if( root.val >= val ) this.sum = this.sum + root.val;
+        root.left = dfs(root.left, val);
+        root.right = dfs(root.right, val);
+        return root;
+    }
+    
+    public TreeNode add(TreeNode root){
+         if( root == null )return null;
+         root.val = arr[k];
+         k++;
+         root.left = add(root.left);
+         root.right = add(root.right);
+         return root;
+        
+    }
+}
