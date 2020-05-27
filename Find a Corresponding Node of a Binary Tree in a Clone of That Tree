@@ -1,0 +1,40 @@
+/*
+Given two binary trees original and cloned and given a reference to a node target in the original tree.
+
+The cloned tree is a copy of the original tree.
+
+Return a reference to the same node in the cloned tree.
+
+Note that you are not allowed to change any of the two trees or the target node and the 
+answer must be a reference to a node in the cloned tree.
+
+Follow up: Solve the problem if repeated values on the tree are allowed.
+*/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
+      return find( original, cloned, target);
+    }
+    
+    public TreeNode find(TreeNode root, TreeNode cloneroot, TreeNode target){
+        if( root == null ) return null;
+        if( root.val == target.val ) return cloneroot;
+        root.left = find(root.left, cloneroot.left, target);
+        root.right = find(root.right, cloneroot.right, target);
+       if( root.left == null )
+           return root.right;
+        else
+            return root.left;
+    }
+}
