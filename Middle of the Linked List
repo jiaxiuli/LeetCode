@@ -1,0 +1,38 @@
+/*
+Given a non-empty, singly linked list with head node head, return a middle node of linked list.
+
+If there are two middle nodes, return the second middle node.
+
+ 
+*/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode fakehead = new ListNode(-1);
+        fakehead.next = head;
+        int count = 0;
+        while(fakehead != null ){
+            fakehead = fakehead.next;
+            count++;
+        }
+        
+        int i  = 0;
+         while(head != null ){
+            if( i == (count-1)/2 )
+                break;
+            i++;
+            head = head.next;
+        }
+        return head;
+    }
+}
