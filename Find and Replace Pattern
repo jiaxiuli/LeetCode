@@ -1,0 +1,43 @@
+class Solution {
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> list = new ArrayList<String>();
+        String pat = getStr(pattern);
+        
+        for( int i = 0 ; i < words.length ; i++ ){
+            if( getStr(words[i]).equals(pat) )
+                list.add(words[i]);
+        }
+      
+        return list;
+    }
+    
+    public String getStr(String pattern){
+        char arr[] = new char[20];
+        String s = "";
+        int k = 1;
+        for( int i = 0 ; i < pattern.length() ; i++ ){
+            if( i == 0 ){
+                 arr[0] = pattern.charAt(0);
+                 s = s + "0";
+                continue;
+            }
+            boolean b = true;
+            
+            for( int j = 0 ; j < arr.length ; j++ ){
+                if( arr[j] == pattern.charAt(i) ){
+                    b = false;
+                    s = s + j;
+                    break;
+                }
+            }
+            if( b ){
+                arr[k] = pattern.charAt(i);
+                s = s + k;
+                k++;
+                
+            }  
+        }
+        System.out.println(s);
+        return s;
+    }
+}
