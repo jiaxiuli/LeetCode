@@ -14,7 +14,7 @@ class Solution {
           if( nums[i] != 0 )
               count++;
       }
-      for( int i = 0 ; i < nums.length ; i++ ){
+      for( int i = 0 ; i < count ; i++ ){
          
           if( nums[i] == 0 ){
               int j = i;
@@ -23,7 +23,6 @@ class Solution {
                   j++;
               }
               nums[nums.length-1] = 0; 
-              if( i == count)break;
               i--;
           }
       }
